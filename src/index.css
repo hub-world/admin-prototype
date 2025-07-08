@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Disable focus rings globally */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+}
