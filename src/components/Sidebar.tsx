@@ -15,6 +15,7 @@ import {
   TagIcon,
   UsersIcon,
 } from "lucide-react";
+import React from "react";
 import { NavLink } from "react-router";
 
 const menuItems = [
@@ -65,7 +66,7 @@ export function Sidebar({ className }: SidebarProps) {
       <nav className="flex-1">
         <ul className="menu w-full gap-0.5">
           {menuItems.map((item) => (
-            <>
+            <React.Fragment key={item.label}>
               {item.divider && (
                 <hr
                   key={`divider-${item.label}`}
@@ -86,7 +87,7 @@ export function Sidebar({ className }: SidebarProps) {
                   {item.label}
                 </NavLink>
               </li>
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </nav>
