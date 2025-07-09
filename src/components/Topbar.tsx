@@ -18,7 +18,7 @@ export function Topbar() {
 
         {/* User Dropdown */}
         <div className="dropdown dropdown-end">
-          <button className="btn flex items-center px-2 btn-ghost">
+          <button tabIndex={0} className="btn flex items-center px-2 btn-ghost">
             <div className="avatar avatar-placeholder">
               <div className="w-8 rounded-full bg-neutral text-neutral-content">
                 <span>JD</span>
