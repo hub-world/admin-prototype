@@ -1,4 +1,10 @@
-import { BellIcon, ChevronDownIcon, SearchIcon } from "lucide-react";
+import {
+  BellIcon,
+  ChevronDownIcon,
+  MoonIcon,
+  SearchIcon,
+  SunIcon,
+} from "lucide-react";
 
 export function Topbar() {
   return (
@@ -9,12 +15,21 @@ export function Topbar() {
         <input type="search" placeholder="Search..." />
       </label>
 
-      {/* Right side - Notifications and User */}
+      {/* Right side - Theme Toggle, Notifications and User */}
       <div className="flex items-center">
-        {/* Notifications */}
-        <button className="btn btn-circle btn-ghost">
-          <BellIcon className="h-5 w-5" />
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <label className="swap swap-rotate">
+            <input type="checkbox" className="theme-controller" value="dark" />
+            <SunIcon className="swap-off h-5 w-5" />
+            <MoonIcon className="swap-on h-5 w-5" />
+          </label>
+
+          {/* Notifications */}
+          <button className="btn btn-circle btn-ghost">
+            <BellIcon className="h-5 w-5" />
+          </button>
+        </div>
 
         {/* User Dropdown */}
         <div className="dropdown dropdown-end">

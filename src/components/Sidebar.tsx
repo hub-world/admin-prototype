@@ -63,7 +63,7 @@ export function Sidebar({ className }: SidebarProps) {
 
       {/* Navigation */}
       <nav className="flex-1">
-        <ul className="menu w-full">
+        <ul className="menu w-full gap-0.5">
           {menuItems.map((item) => (
             <>
               {item.divider && (
