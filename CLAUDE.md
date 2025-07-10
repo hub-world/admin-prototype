@@ -33,7 +33,8 @@ This is a React + TypeScript + Vite admin prototype application using modern Tai
 
 - **Entry Point**: `src/main.tsx` - Sets up React with BrowserRouter
 - **Root Component**: `src/App.tsx` - Contains routing configuration with Layout wrapper
-- **Pages**: `src/pages/` - Contains page components (Layout.tsx, HomePage.tsx)
+- **Pages**: `src/pages/` - Contains page components (Layout.tsx, HomePage.tsx, ReservationsPage.tsx)
+- **Components**: `src/components/` - Reusable UI components (Sidebar.tsx, Topbar.tsx)
 - **Styling**: `src/index.css` - Tailwind CSS imports with DaisyUI plugin
 
 ### Key Configuration
@@ -50,6 +51,14 @@ This is a React + TypeScript + Vite admin prototype application using modern Tai
 - Prettier automatically sorts imports and orders Tailwind classes
 - Path alias `~` available for cleaner imports from src directory
 - Use the package `classnames` instead of string interpolation for CSS class composition
+
+### Key Dependencies
+
+- **Icons**: `lucide-react` - Always use the `XyzIcon` aliases
+- **Date Utilities**: `date-fns` - For date manipulation and formatting
+- **CSS Classes**: `classnames` - For conditional CSS class composition
+- **Styling**: `daisyui` - UI component library for Tailwind CSS
+- **React Router**: `react-router` v7 - For declarative routing
 
 ### Icon Library Notes
 
