@@ -51,6 +51,7 @@ This is a React + TypeScript + Vite admin prototype application using modern Tai
 - Prettier automatically sorts imports and orders Tailwind classes
 - Path alias `~` available for cleaner imports from src directory
 - Use the package `classnames` instead of string interpolation for CSS class composition
+- Inputs with icon are created using DaisyUIs label.input wrapper
 
 ### Key Dependencies
 
