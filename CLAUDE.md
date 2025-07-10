@@ -61,6 +61,6 @@ This is a React + TypeScript + Vite admin prototype application using modern Tai
 - **Styling**: `daisyui` - UI component library for Tailwind CSS
 - **React Router**: `react-router` v7 - For declarative routing
 
-### Icon Library Notes
+## Project Context
 
-- When using `lucide-react` always take the `XyzIcon` aliases
+- This is a backoffice prototype of a serviced apartment building. The target group are young professionals. Most are staying mid term, i.e. a couple of months up to a year.
