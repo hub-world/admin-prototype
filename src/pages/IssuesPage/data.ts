@@ -1,0 +1,461 @@
+import { addDays } from "date-fns";
+
+export type AssignmentType = "contractor" | "unassigned";
+
+export type Issue = {
+  id: string;
+  referenceNumber: string;
+  title: string;
+  description: string;
+  category: string;
+  issueType: string;
+  status: "open" | "resolved" | "closed";
+  priority: "low" | "medium" | "high" | "urgent";
+  customerName: string;
+  apartment: string;
+  photoCount: number;
+  createdAt: Date;
+  appointment?: Date;
+  duration?: number; // in hours
+  assignmentType: AssignmentType;
+  assignedContractorId?: string;
+};
+
+export type IssueStatus = "open" | "resolved" | "closed";
+export type IssuePriority = "low" | "medium" | "high" | "urgent";
+
+export type CapabilityRanking = {
+  capability: string;
+  rank: number; // 1-5 ranking within this capability
+};
+
+export type Contractor = {
+  id: string;
+  company: string;
+  capabilityRankings: CapabilityRanking[];
+  available: boolean;
+};
+
+export const mockContractors: Contractor[] = [
+  {
+    id: "internal",
+    company: "Internal Team",
+    capabilityRankings: [
+      { capability: "maintenance", rank: 5 },
+      { capability: "lighting", rank: 4 },
+      { capability: "general", rank: 5 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor1",
+    company: "Johnson Plumbing Solutions",
+    capabilityRankings: [
+      { capability: "plumbing", rank: 5 },
+      { capability: "heating", rank: 4 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor2",
+    company: "Elite Electrical Services",
+    capabilityRankings: [
+      { capability: "electrical", rank: 5 },
+      { capability: "lighting", rank: 4 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor3",
+    company: "Davis HVAC & Appliances",
+    capabilityRankings: [
+      { capability: "heating", rank: 5 },
+      { capability: "appliance", rank: 3 },
+    ],
+    available: false,
+  },
+  {
+    id: "contractor4",
+    company: "Brown General Contracting",
+    capabilityRankings: [
+      { capability: "window", rank: 4 },
+      { capability: "door", rank: 3 },
+      { capability: "maintenance", rank: 2 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor5",
+    company: "Premium Plumbing Co",
+    capabilityRankings: [
+      { capability: "plumbing", rank: 4 },
+      { capability: "appliance", rank: 2 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor6",
+    company: "Bright Lighting Solutions",
+    capabilityRankings: [
+      { capability: "lighting", rank: 5 },
+      { capability: "electrical", rank: 3 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor7",
+    company: "Quick Fix Appliances",
+    capabilityRankings: [
+      { capability: "appliance", rank: 5 },
+      { capability: "heating", rank: 2 },
+    ],
+    available: false,
+  },
+  {
+    id: "contractor8",
+    company: "Secure Windows & Doors",
+    capabilityRankings: [
+      { capability: "window", rank: 5 },
+      { capability: "door", rank: 5 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor9",
+    company: "Total Maintenance Services",
+    capabilityRankings: [
+      { capability: "maintenance", rank: 5 },
+      { capability: "lighting", rank: 3 },
+      { capability: "plumbing", rank: 2 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor10",
+    company: "Expert Electrical Works",
+    capabilityRankings: [
+      { capability: "electrical", rank: 4 },
+      { capability: "lighting", rank: 2 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor11",
+    company: "Climate Control Specialists",
+    capabilityRankings: [
+      { capability: "heating", rank: 3 },
+      { capability: "appliance", rank: 4 },
+    ],
+    available: false,
+  },
+  {
+    id: "contractor12",
+    company: "Pro Window Solutions",
+    capabilityRankings: [
+      { capability: "window", rank: 3 },
+      { capability: "door", rank: 4 },
+      { capability: "maintenance", rank: 3 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor13",
+    company: "Advanced Plumbing Systems",
+    capabilityRankings: [
+      { capability: "plumbing", rank: 3 },
+      { capability: "heating", rank: 4 },
+    ],
+    available: true,
+  },
+  {
+    id: "contractor14",
+    company: "Elite Door & Window Co",
+    capabilityRankings: [
+      { capability: "door", rank: 2 },
+      { capability: "window", rank: 2 },
+      { capability: "maintenance", rank: 4 },
+    ],
+    available: true,
+  },
+];
+
+export const mockIssues: Issue[] = [
+  {
+    id: "1",
+    referenceNumber: "RP-123456",
+    title: "Plumbing Issue",
+    description:
+      "Kitchen sink is not draining properly and there's a bad smell coming from it.",
+    category: "Kitchen",
+    issueType: "plumbing",
+    status: "open",
+    priority: "high",
+    customerName: "Emma Johnson",
+    apartment: "P045",
+    photoCount: 2,
+    createdAt: addDays(new Date(), -1),
+    appointment: new Date(addDays(new Date(), 1).setHours(9, 0)),
+    duration: 2,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor1",
+  },
+  {
+    id: "2",
+    referenceNumber: "RP-789012",
+    title: "Heating/AC Issue",
+    description:
+      "Heating system is not working in the bedroom. It's very cold at night.",
+    category: "Bedroom",
+    issueType: "heating",
+    status: "open",
+    priority: "urgent",
+    customerName: "Michael Chen",
+    apartment: "B007",
+    photoCount: 1,
+    createdAt: addDays(new Date(), -2),
+    appointment: new Date(addDays(new Date(), 0).setHours(10, 0)),
+    duration: 3,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor3",
+  },
+  {
+    id: "3",
+    referenceNumber: "RP-345678",
+    title: "Shower/Bathtub Issue",
+    description: "Water pressure is very low in the shower.",
+    category: "Bathroom",
+    issueType: "shower",
+    status: "resolved",
+    priority: "medium",
+    customerName: "Sarah Wilson",
+    apartment: "E089",
+    photoCount: 0,
+    createdAt: addDays(new Date(), -3),
+    appointment: new Date(addDays(new Date(), 1).setHours(14, 0)),
+    duration: 1,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor1",
+  },
+  {
+    id: "4",
+    referenceNumber: "RP-901234",
+    title: "Appliance Not Working",
+    description: "Microwave stopped working completely. No power at all.",
+    category: "Kitchen",
+    issueType: "appliance",
+    status: "open",
+    priority: "low",
+    customerName: "Alex Rodriguez",
+    apartment: "C023",
+    photoCount: 3,
+    createdAt: addDays(new Date(), -4),
+    assignmentType: "unassigned",
+  },
+  {
+    id: "5",
+    referenceNumber: "RP-567890",
+    title: "Window/Door Issue",
+    description: "Balcony door handle is broken and door won't lock properly.",
+    category: "Living Room",
+    issueType: "window",
+    status: "closed",
+    priority: "medium",
+    customerName: "Lisa Thompson",
+    apartment: "F003",
+    photoCount: 1,
+    createdAt: addDays(new Date(), -6),
+    appointment: new Date(addDays(new Date(), 2).setHours(9, 0)),
+    duration: 2.5,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor4",
+  },
+  {
+    id: "6",
+    referenceNumber: "RP-111222",
+    title: "General Maintenance",
+    description: "Light bulbs need to be replaced in the hallway and bathroom.",
+    category: "General",
+    issueType: "maintenance",
+    status: "open",
+    priority: "low",
+    customerName: "David Kim",
+    apartment: "E012",
+    photoCount: 0,
+    createdAt: addDays(new Date(), -2),
+    appointment: new Date(addDays(new Date(), 0).setHours(16, 0)),
+    duration: 1,
+    assignmentType: "contractor",
+    assignedContractorId: "internal",
+  },
+  {
+    id: "7",
+    referenceNumber: "RP-222333",
+    title: "Kitchen Appliance Issue",
+    description: "Dishwasher is making loud noises and not cleaning properly.",
+    category: "Kitchen",
+    issueType: "appliance",
+    status: "open",
+    priority: "medium",
+    customerName: "Sarah Davis",
+    apartment: "E015",
+    photoCount: 1,
+    createdAt: addDays(new Date(), 0),
+    assignmentType: "unassigned",
+  },
+  {
+    id: "8",
+    referenceNumber: "RP-333444",
+    title: "Electrical Problem",
+    description: "Power outlets in living room are not working.",
+    category: "Living Room",
+    issueType: "electrical",
+    status: "open",
+    priority: "high",
+    customerName: "Mark Wilson",
+    apartment: "C023",
+    photoCount: 0,
+    createdAt: addDays(new Date(), -1),
+    appointment: new Date(addDays(new Date(), 2).setHours(12, 0)),
+    duration: 3,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor2",
+  },
+  {
+    id: "9",
+    referenceNumber: "RP-444555",
+    title: "Window Lock Issue",
+    description: "Bedroom window lock is broken and window won't stay closed.",
+    category: "Bedroom",
+    issueType: "window",
+    status: "open",
+    priority: "medium",
+    customerName: "Linda Brown",
+    apartment: "B018",
+    photoCount: 2,
+    createdAt: addDays(new Date(), 0),
+    appointment: new Date(addDays(new Date(), 5).setHours(8, 0)),
+    duration: 1.5,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor8",
+  },
+  {
+    id: "10",
+    referenceNumber: "RP-555666",
+    title: "Door Handle Problem",
+    description: "Front door handle is loose and difficult to turn.",
+    category: "General",
+    issueType: "door",
+    status: "open",
+    priority: "low",
+    customerName: "James Taylor",
+    apartment: "C012",
+    photoCount: 0,
+    createdAt: addDays(new Date(), -1),
+    appointment: new Date(addDays(new Date(), 6).setHours(14, 0)),
+    duration: 4,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor8",
+  },
+  {
+    id: "11",
+    referenceNumber: "RP-666777",
+    title: "Lighting Issue",
+    description: "Ceiling light in bathroom is flickering constantly.",
+    category: "Bathroom",
+    issueType: "lighting",
+    status: "open",
+    priority: "medium",
+    customerName: "Anna Martinez",
+    apartment: "E067",
+    photoCount: 1,
+    createdAt: addDays(new Date(), 0),
+    appointment: new Date(addDays(new Date(), 3).setHours(15, 0)),
+    duration: 1,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor9",
+  },
+  {
+    id: "12",
+    referenceNumber: "RP-777888",
+    title: "Heating System Failure",
+    description: "No heat in apartment, very cold especially at night.",
+    category: "General",
+    issueType: "heating",
+    status: "open",
+    priority: "urgent",
+    customerName: "Robert Johnson",
+    apartment: "E099",
+    photoCount: 0,
+    createdAt: addDays(new Date(), -2),
+    appointment: new Date(addDays(new Date(), 4).setHours(9, 0)),
+    duration: 2.5,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor11",
+  },
+  {
+    id: "13",
+    referenceNumber: "RP-888999",
+    title: "Plumbing Leak",
+    description: "Small leak under bathroom sink, water damage possible.",
+    category: "Bathroom",
+    issueType: "plumbing",
+    status: "open",
+    priority: "high",
+    customerName: "Carol White",
+    apartment: "F008",
+    photoCount: 3,
+    createdAt: addDays(new Date(), -1),
+    appointment: new Date(addDays(new Date(), 5).setHours(10, 0)),
+    duration: 3,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor13",
+  },
+  {
+    id: "14",
+    referenceNumber: "RP-999000",
+    title: "Door Alignment Issue",
+    description: "Bathroom door doesn't close properly, gap at the bottom.",
+    category: "Bathroom",
+    issueType: "door",
+    status: "open",
+    priority: "medium",
+    customerName: "Steven Lee",
+    apartment: "F004",
+    photoCount: 1,
+    createdAt: addDays(new Date(), 0),
+    appointment: new Date(addDays(new Date(), 6).setHours(13, 0)),
+    duration: 1.5,
+    assignmentType: "contractor",
+    assignedContractorId: "contractor14",
+  },
+  {
+    id: "15",
+    referenceNumber: "RP-000111",
+    title: "Noisy Neighbors",
+    description: "Upstairs neighbors are very loud, especially at night.",
+    category: "General",
+    issueType: "noise",
+    status: "open",
+    priority: "low",
+    customerName: "Patricia Green",
+    apartment: "B019",
+    photoCount: 0,
+    createdAt: addDays(new Date(), 1),
+    assignmentType: "unassigned",
+  },
+  {
+    id: "16",
+    referenceNumber: "RP-111333",
+    title: "WiFi Issues",
+    description: "Internet connection keeps dropping in the apartment.",
+    category: "General",
+    issueType: "internet",
+    status: "open",
+    priority: "medium",
+    customerName: "Kevin Murphy",
+    apartment: "C044",
+    photoCount: 0,
+    createdAt: addDays(new Date(), 1),
+    assignmentType: "unassigned",
+  },
+];

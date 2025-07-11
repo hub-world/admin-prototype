@@ -15,7 +15,7 @@ function App() {
         <Route path="/reservations" element={<ReservationsPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/customers" element={<CustomersPage />} />
-        <Route path="/issues" element={<IssuesPage />} />
+        <Route path="/issues/*" element={<IssuesPage />} />
       </Routes>
     </Layout>
   );
