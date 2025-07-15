@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import { CustomersPage } from "./pages/CustomersPage";
+import { EventsPage } from "./pages/EventsPage";
 import { HomePage } from "./pages/HomePage";
 import { IssuesPage } from "./pages/IssuesPage";
 import { Layout } from "./pages/Layout";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/reservations" element={<ReservationsPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/customers" element={<CustomersPage />} />
+        <Route path="/events" element={<EventsPage />} />
         <Route path="/issues/*" element={<IssuesPage />} />
       </Routes>
     </Layout>

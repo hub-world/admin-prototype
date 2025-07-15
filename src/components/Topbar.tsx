@@ -20,7 +20,7 @@ export function Topbar() {
         <div className="flex items-center gap-2">
           {/* Theme Toggle */}
           <label className="swap swap-rotate">
-            <input type="checkbox" className="theme-controller" value="dark" />
+            <input type="checkbox" className="theme-controller" value="dark" data-set-theme="light" />
             <SunIcon className="swap-off h-5 w-5" />
             <MoonIcon className="swap-on h-5 w-5" />
           </label>

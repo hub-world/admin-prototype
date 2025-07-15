@@ -11,6 +11,7 @@ import {
   EuroIcon,
   HomeIcon,
   MessageSquareIcon,
+  PartyPopperIcon,
   ShieldIcon,
   TagIcon,
   UsersIcon,
@@ -23,6 +24,7 @@ const menuItems = [
   { icon: MessageSquareIcon, label: "Messages", path: "/messages" },
   { icon: CalendarIcon, label: "Reservations", path: "/reservations" },
   { icon: ContactRoundIcon, label: "Customers", path: "/customers" },
+  { icon: PartyPopperIcon, label: "Events", path: "/events" },
 
   {
     icon: DoorOpenIcon,
