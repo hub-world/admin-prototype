@@ -10,8 +10,8 @@ import {
   StarIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { mockContractors, mockIssues, type Issue } from "./data";
 
+import { type Issue, mockContractors, mockIssues } from "./data";
 
 export function ContractorsTab() {
   const [selectedCapability, setSelectedCapability] = useState<string>("all");
@@ -54,7 +54,8 @@ export function ContractorsTab() {
 
   const handleScheduleClick = (contractorId: string) => {
     const contractorIssues = mockIssues.filter(
-      (issue) => issue.assignedContractorId === contractorId && issue.appointment
+      (issue) =>
+        issue.assignedContractorId === contractorId && issue.appointment,
     );
     setSelectedContractorIssues(contractorIssues);
     setShowScheduleModal(true);
@@ -128,9 +129,7 @@ export function ContractorsTab() {
                               : "bg-base-200 text-base-content/50",
                           )}
                         >
-                          <span className="capitalize">
-                            {cr.capability}
-                          </span>
+                          <span className="capitalize">{cr.capability}</span>
                           <div className="flex">
                             {Array.from({ length: 5 }, (_, i) => (
                               <StarIcon
@@ -165,7 +164,14 @@ export function ContractorsTab() {
                       className="btn btn-ghost btn-xs"
                       onClick={() => handleScheduleClick(contractor.id)}
                     >
-                      {mockIssues.filter(issue => issue.assignedContractorId === contractor.id && issue.appointment).length} issues
+                      {
+                        mockIssues.filter(
+                          (issue) =>
+                            issue.assignedContractorId === contractor.id &&
+                            issue.appointment,
+                        ).length
+                      }{" "}
+                      issues
                     </button>
                   </td>
                   <td>
@@ -203,12 +209,18 @@ export function ContractorsTab() {
                     <div
                       className={classNames(
                         "badge badge-xs",
-                        issue.status === "open" ? "badge-info" : 
-                        issue.status === "resolved" ? "badge-success" : "badge-neutral",
+                        issue.status === "open"
+                          ? "badge-info"
+                          : issue.status === "resolved"
+                            ? "badge-success"
+                            : "badge-neutral",
                       )}
                     >
-                      {issue.status === "open" ? "Scheduled" : 
-                       issue.status === "resolved" ? "Completed" : issue.status}
+                      {issue.status === "open"
+                        ? "Scheduled"
+                        : issue.status === "resolved"
+                          ? "Completed"
+                          : issue.status}
                     </div>
                   </div>
                   <div className="text-sm text-base-content/70">

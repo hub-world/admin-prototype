@@ -3,14 +3,20 @@ import { format } from "date-fns";
 import {
   AlertCircleIcon,
   CheckCircleIcon,
+  ImageIcon,
   type LucideIcon,
   MessageSquareIcon,
   PhoneIcon,
-  ImageIcon,
   WrenchIcon,
   ZapIcon,
 } from "lucide-react";
-import { mockIssues, mockContractors, type IssueStatus, type IssuePriority } from "./data";
+
+import {
+  type IssuePriority,
+  type IssueStatus,
+  mockContractors,
+  mockIssues,
+} from "./data";
 
 const statusConfig: Record<
   IssueStatus,
@@ -48,9 +54,7 @@ export function IssuesTab() {
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="mb-1 flex items-center gap-2">
-                      <span className="text-sm font-medium">
-                        {issue.title}
-                      </span>
+                      <span className="text-sm font-medium">{issue.title}</span>
                       <div
                         className={classNames(
                           "badge badge-xs",
@@ -95,7 +99,11 @@ export function IssuesTab() {
                   {issue.assignedContractorId && (
                     <span className="flex items-center gap-1">
                       <WrenchIcon className="h-3 w-3" />
-                      {mockContractors.find(c => c.id === issue.assignedContractorId)?.company}
+                      {
+                        mockContractors.find(
+                          (c) => c.id === issue.assignedContractorId,
+                        )?.company
+                      }
                     </span>
                   )}
                 </div>
