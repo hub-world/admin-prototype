@@ -39,7 +39,10 @@ export function ContractorsTab() {
     })
     .sort((a, b) => {
       if (selectedCapability === "all") {
-        return b.rating - a.rating; // Sort by overall rating
+        // Calculate overall rating as average of all capability rankings
+        const aRating = a.capabilityRankings.reduce((sum, cr) => sum + cr.rank, 0) / a.capabilityRankings.length;
+        const bRating = b.capabilityRankings.reduce((sum, cr) => sum + cr.rank, 0) / b.capabilityRankings.length;
+        return bRating - aRating; // Sort by overall rating
       }
 
       // Sort by rank within selected capability (descending)
